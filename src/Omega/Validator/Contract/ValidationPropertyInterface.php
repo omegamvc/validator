@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Validator\Contract;
+namespace Omega\Validator\Contract;
 
 /**
- * Doest containt anythink,
+ * Doest contain anything,
  * just load property doc.
  *
  * @property string $required

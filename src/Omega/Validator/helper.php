@@ -7,9 +7,9 @@ if (!function_exists('vr')) {
      * Alias for validation rule,
      * return string validation rule.
      */
-    function vr(): Validator\Rule\Valid
+    function vr(): Omega\Validator\Rule\Valid
     {
-        return new Validator\Rule\Valid();
+        return new Omega\Validator\Rule\Valid();
     }
 }
 
@@ -18,9 +18,9 @@ if (!function_exists('fr')) {
      * Alias for filter rule,
      * return string filter rule.
      */
-    function fr(): Validator\Rule\Filter
+    function fr(): Omega\Validator\Rule\Filter
     {
-        return new Validator\Rule\Filter();
+        return new Omega\Validator\Rule\Filter();
     }
 }
 
@@ -30,8 +30,8 @@ if (!function_exists('validate')) {
      *
      * @param array<string, mixed> $field Field input
      */
-    function validate($field): Validator\Validator
+    function validate($field): Omega\Validator\Validator
     {
-        return new Validator\Validator($field);
+        return new Omega\Validator\Validator($field);
     }
 }

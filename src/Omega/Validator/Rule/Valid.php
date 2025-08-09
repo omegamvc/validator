@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Validator\Rule;
+namespace Omega\Validator\Rule;
 
 use Closure;
 use Exception;
-use Validator\Rule;
+use Omega\Validator\Rule as Rules;
 
 /**
  * @internal
@@ -27,9 +27,9 @@ final class Valid
 
     public function __construct()
     {
-        $this->delimiter                   = Rule::$rules_delimiter;
-        $this->parameters_delimiter        = Rule::$rules_parameters_delimiter;
-        $this->parameters_arrays_delimiter = Rule::$rules_parameters_arrays_delimiter;
+        $this->delimiter                   = Rules::$rules_delimiter;
+        $this->parameters_delimiter        = Rules::$rules_parameters_delimiter;
+        $this->parameters_arrays_delimiter = Rules::$rules_parameters_arrays_delimiter;
     }
 
     /**
@@ -225,8 +225,8 @@ final class Valid
             $message_invert = 'Not, ' . $message;
             $invert         = fn ($field, $input, $param, $value) => !call_user_func($costume_validation, $field, $input, $param, $value);
 
-            Rule::add_validator($rule_name, $costume_validation, $message);
-            Rule::add_validator($rule_invert, $invert, $message_invert);
+            Rules::add_validator($rule_name, $costume_validation, $message);
+            Rules::add_validator($rule_invert, $invert, $message_invert);
 
             $this->validation_rule[] = $rule_name;
         }

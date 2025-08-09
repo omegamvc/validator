@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Validator\Rule;
+namespace Omega\Validator\Rule;
 
-use Closure;
 use Exception;
-use Validator\Rule;
+use Omega\Validator\Rule as Rules;
+use Random\RandomException;
 
 /**
  * @internal
@@ -14,14 +14,14 @@ use Validator\Rule;
 final class Filter
 {
     /** @var string[] */
-    private $filter_rule = [];
+    private array $filter_rule = [];
 
     /** @var string */
-    private $delimiter = '|';
+    private string $delimiter;
 
     public function __construct()
     {
-        $this->delimiter = Rule::$rules_delimiter;
+        $this->delimiter = Rules::$rules_delimiter;
     }
 
     /**
@@ -29,7 +29,7 @@ final class Filter
      */
     public static function with(): self
     {
-        return new static();
+        return new Filter();
     }
 
     /**
@@ -47,11 +47,11 @@ final class Filter
                 continue;
             }
             if ($rule === 'if_true' || $rule === 'end_if') {
-                // break if statment
+                // break if statement
                 $is_block_if = false;
                 continue;
             }
-            // block rule if statment is false
+            // block rule if statement is false
             if ($is_block_if === true) {
                 continue;
             }
@@ -87,20 +87,21 @@ final class Filter
     }
 
     /**
-     * Rule will be applay if condition is true,
+     * Rule will be applied if condition is true,
      * otherwise rule be reset (not set) if return false.
      *
      * Reset only boolean false.
      *
      * @param callable(): bool $condition Closure return boolean
+     * @throws Exception
      */
-    public function where($condition): string
+    public function where(callable $condition): string
     {
         // get return closure
         $result = call_user_func_array($condition, []);
         // throw exception if closure not return boolean
         if (!is_bool($result)) {
-            throw new \Exception('Condition closure not return boolean', 1);
+            throw new Exception('Condition closure not return boolean', 1);
         }
 
         // false condition
@@ -113,20 +114,21 @@ final class Filter
     }
 
     /**
-     * Rule will be applay if condition is true,
+     * Rule will be applied if condition is true,
      * otherwise rule be skip if return false.
      *
      * Reset only boolean false.
      *
      * @param callable(): bool $condition Closure return boolean
+     * @throws Exception
      */
-    public function if($condition): self
+    public function if(callable $condition): self
     {
         // get return closure
         $result = call_user_func_array($condition, []);
         // throw exception if closure not return boolean
         if (!is_bool($result)) {
-            throw new \Exception('Condition closure not return boolean', 1);
+            throw new Exception('Condition closure not return boolean', 1);
         }
 
         // add condition to rule
@@ -139,7 +141,7 @@ final class Filter
     }
 
     /**
-     * Set end rule of 'if' statment.
+     * Set end rule of 'if' statement.
      */
     public function end_if(): self
     {
@@ -149,7 +151,7 @@ final class Filter
     }
 
     /**
-     * Adding costume Fillter.
+     * Adding costume Filter.
      *
      * @template T
      *
@@ -157,15 +159,17 @@ final class Filter
      *                                                              can contain param as ($value, $params)
      *
      * @return self
+     * @throws RandomException
+     * @throws Exception
      */
-    public function filter($costume_filter)
+    public function filter(callable $costume_filter): Filter
     {
         if (is_callable($costume_filter)) {
             $byte           = random_bytes(3);
             $hex            = bin2hex($byte);
             $rule_name      = 'filter_' . $hex;
 
-            Rule::add_filter($rule_name, $costume_filter);
+            Rules::add_filter($rule_name, $costume_filter);
 
             $this->filter_rule[] = $rule_name;
         }
@@ -180,7 +184,7 @@ final class Filter
      *
      * @return self
      */
-    public function raw($raw_rule)
+    public function raw(string $raw_rule): Filter
     {
         $this->filter_rule[] = $raw_rule;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Validator\Rule;
+namespace Omega\Validator\Rule;
 
 /**
  * @internal

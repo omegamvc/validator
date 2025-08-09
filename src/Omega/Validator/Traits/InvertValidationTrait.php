@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Validator\Traits;
+namespace Omega\Validator\Traits;
 
 /**
  * Trait contain invert exist validation method from parent.

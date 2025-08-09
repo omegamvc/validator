@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Validator\Messages;
+namespace Omega\Validator\Messages;
 
 final class MessagePool
 {
     /** @var Message[] */
-    private $messages = [];
+    private array $messages = [];
 
     /**
      * Field tobe set.
@@ -16,7 +16,7 @@ final class MessagePool
      *
      * @return Message
      */
-    public function __get($name)
+    public function __get(string $name)
     {
         return $this->field($name);
     }
@@ -24,12 +24,12 @@ final class MessagePool
     /**
      * Field tobe set.
      *
-     * @param string  $field   Field name
+     * @param string $field   Field name
      * @param Message $message Message for this field
      *
      * @return void
      */
-    public function __set($field, $message)
+    public function __set(string $field, Message $message)
     {
         $this->messages[$field] = $message;
     }
@@ -54,7 +54,7 @@ final class MessagePool
      *
      * @return Message
      */
-    public function field(string $name)
+    public function field(string $name): Message
     {
         return $this->messages[$name] = new Message();
     }
@@ -62,7 +62,7 @@ final class MessagePool
     /**
      * @return Message[]
      */
-    public function Messages()
+    public function Messages(): array
     {
         return $this->messages;
     }

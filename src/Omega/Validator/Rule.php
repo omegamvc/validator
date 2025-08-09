@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Validator;
+namespace Omega\Validator;
 
-use Validator\Traits\CostumeFilterTrait;
-use Validator\Traits\CostumeValidationTrait;
-use Validator\Traits\InvertValidationTrait;
+use Omega\Validator\Traits\CostumeFilterTrait;
+use Omega\Validator\Traits\CostumeValidationTrait;
+use Omega\Validator\Traits\InvertValidationTrait;
 
 /**
  * @internal

@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Validator\Messages;
+namespace Omega\Validator\Messages;
 
 use ArrayAccess;
-use Validator\Contract\ValidationPropertyInterface;
+use Omega\Validator\Contract\ValidationPropertyInterface;
+use ReturnTypeWillChange;
 
 /**
  * @implements ArrayAccess<string,string>
  */
-final class Message implements \ArrayAccess, ValidationPropertyInterface
+final class Message implements ArrayAccess, ValidationPropertyInterface
 {
     /** @var array<string, string> */
-    private $messages = [];
+    private array $messages = [];
 
     /**
      * Set message value using __set.
@@ -26,7 +27,7 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
     }
 
     /**
-     * Add error message directive to poolcolection.
+     * Add error message directive to pool collection.
      */
     public function set(string $rule, string $message): self
     {
@@ -36,7 +37,7 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
     }
 
     /**
-     * Add error message directive to poolcolection.
+     * Add error message directive to pool collection.
      *
      * @param array<string, string> $errorMessages
      */
@@ -54,12 +55,12 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
      *
      * @return array<string, string>
      */
-    public function messages()
+    public function messages(): array
     {
         return $this->messages;
     }
 
-    // array access intereface
+    // array access interface
 
     /**
      * Assigns a value to the specified offset.
@@ -73,7 +74,7 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
     }
 
     /**
-     * Whether or not an offset exists.
+     * Whether an offset exists.
      * This method is executed when using isset() or empty().
      *
      * @param string $offset an offset to check for
@@ -99,12 +100,11 @@ final class Message implements \ArrayAccess, ValidationPropertyInterface
      * Returns the value at specified offset.
      *
      * @param string $offset the offset to retrieve
-     *
      * @return string|null Can return all value types
      */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    #[ReturnTypeWillChange]
+    public function offsetGet(mixed $offset): ?string
     {
-        return isset($this->messages[$offset]) ? $this->messages[$offset] : null;
+        return $this->messages[$offset] ?? null;
     }
 }

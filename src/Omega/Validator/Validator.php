@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Validator;
+namespace Omega\Validator;
 
 use Closure;
 use Exception;
-use Validator\Messages\Message;
-use Validator\Messages\MessagePool;
-use Validator\Rule\Filter;
-use Validator\Rule\FilterPool;
-use Validator\Rule\Valid;
-use Validator\Rule\ValidPool;
+use Omega\Validator\Messages\Message;
+use Omega\Validator\Messages\MessagePool;
+use Omega\Validator\Rule\Filter;
+use Omega\Validator\Rule\FilterPool;
+use Omega\Validator\Rule\Valid;
+use Omega\Validator\Rule\ValidPool;
 
 /**
  * @internal

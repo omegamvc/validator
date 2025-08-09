@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Validator;
+namespace Omega\Validator;
 
-use Validator\Contract\CollectionInterface;
+use Omega\Validator\Contract\CollectionInterface;
 
 /**
  * Simple collection helper.
