@@ -21,10 +21,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Validator\\": "src/"
+            "Omega\\Validator\\": "src/Omega/Validator/"
         },
         "files": [
-            "src/helper.php"
+            "src/Omega/Validator/helper.php"
         ]
     },
     "autoload-dev": {
