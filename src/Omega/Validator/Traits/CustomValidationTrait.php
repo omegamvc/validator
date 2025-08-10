@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Omega\Validator\Traits;
 
 /**
- * Trait contain Costume validation.
+ * Trait contain Custom validation.
  */
-trait CostumeValidationTrait
+trait CustomValidationTrait
 {
     /**
      * Cek the field is contain in input fileds.
-     * Costume rule to prevent runtime error when validation is empty.
+     * Custom rule to prevent runtime error when validation is empty.
      *
      * @param string                $field
      * @param array<string, string> $input

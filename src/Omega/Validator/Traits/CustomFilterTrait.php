@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Omega\Validator\Traits;
 
 /**
- * Trait contain Costume Filter.
+ * Trait contain Custom Filter.
  */
-trait CostumeFilterTrait
+trait CustomFilterTrait
 {
     /**
      * Filter doest perfome anythink.
-     * Costume rule to prevent runtime error when validation is empty.
+     * Custom rule to prevent runtime error when validation is empty.
      *
      * @template T
      *

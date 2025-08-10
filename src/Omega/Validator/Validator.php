@@ -410,11 +410,11 @@ final class Validator
     }
 
     /**
-     * Helper to get costume message from Closure.
+     * Helper to get custom message from Closure.
      *
      * @param callable(MessagePool=): (MessagePool|mixed) $rule_filter closure of MessagePool
      *
-     * @return MessagePool Costume error Message
+     * @return MessagePool Custom error Message
      */
     private function closureToMessages($rule_filter): MessagePool
     {

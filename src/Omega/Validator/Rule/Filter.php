@@ -151,25 +151,25 @@ final class Filter
     }
 
     /**
-     * Adding costume Filter.
+     * Adding custom Filter.
      *
      * @template T
      *
-     * @param callable(T, array<string, string>): T $costume_filter Callable return as string,
+     * @param callable(T, array<string, string>): T $custom_filter Callable return as string,
      *                                                              can contain param as ($value, $params)
      *
      * @return self
      * @throws RandomException
      * @throws Exception
      */
-    public function filter(callable $costume_filter): Filter
+    public function filter(callable $custom_filter): Filter
     {
-        if (is_callable($costume_filter)) {
+        if (is_callable($custom_filter)) {
             $byte           = random_bytes(3);
             $hex            = bin2hex($byte);
             $rule_name      = 'filter_' . $hex;
 
-            Rules::add_filter($rule_name, $costume_filter);
+            Rules::add_filter($rule_name, $custom_filter);
 
             $this->filter_rule[] = $rule_name;
         }

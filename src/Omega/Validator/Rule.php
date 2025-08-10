@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Omega\Validator;
 
-use Omega\Validator\Traits\CostumeFilterTrait;
-use Omega\Validator\Traits\CostumeValidationTrait;
+use Omega\Validator\Traits\CustomFilterTrait;
+use Omega\Validator\Traits\CustomValidationTrait;
 use Omega\Validator\Traits\InvertValidationTrait;
 
 /**
@@ -15,9 +15,9 @@ final class Rule extends \GUMP
 {
     // validation
     use InvertValidationTrait;
-    use CostumeValidationTrait;
+    use CustomValidationTrait;
     // filter
-    use CostumeFilterTrait;
+    use CustomFilterTrait;
 
     /**
      * Change language for error messages.
@@ -41,7 +41,7 @@ final class Rule extends \GUMP
     {
         $messages = parent::get_messages();
 
-        // add inveret costume validate message
+        // add inveret custom validate message
         foreach ($messages as $rule => $message) {
             $rule_key = 'invert_' . $rule;
             if (!isset($messages[$rule_key])) {

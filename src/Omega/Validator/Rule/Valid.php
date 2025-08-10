@@ -208,24 +208,24 @@ final class Valid
     }
 
     /**
-     * Adding costume validation.
+     * Adding custom validation.
      *
-     * @param callable(string, array<string, string>, array<string, string>, mixed): bool $costume_validation Callable return as boolean, can contain param as ($field, $input, $param, $value)
-     * @param string                                                                      $message            Add costume message for validate
+     * @param callable(string, array<string, string>, array<string, string>, mixed): bool $custom_validation Callable return as boolean, can contain param as ($field, $input, $param, $value)
+     * @param string                                                                      $message            Add custom message for validate
      *
      * @return self
      */
-    public function valid($costume_validation, string $message = 'Valid costume validation')
+    public function valid($custom_validation, string $message = 'Valid custom validation')
     {
-        if (is_callable($costume_validation)) {
+        if (is_callable($custom_validation)) {
             $byte           = random_bytes(3);
             $hex            = bin2hex($byte);
             $rule_name      = 'validate_' . $hex;
             $rule_invert    = 'invert_validate_' . $hex;
             $message_invert = 'Not, ' . $message;
-            $invert         = fn ($field, $input, $param, $value) => !call_user_func($costume_validation, $field, $input, $param, $value);
+            $invert         = fn ($field, $input, $param, $value) => !call_user_func($custom_validation, $field, $input, $param, $value);
 
-            Rules::add_validator($rule_name, $costume_validation, $message);
+            Rules::add_validator($rule_name, $custom_validation, $message);
             Rules::add_validator($rule_invert, $invert, $message_invert);
 
             $this->validation_rule[] = $rule_name;
