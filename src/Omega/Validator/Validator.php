@@ -14,8 +14,6 @@ use Omega\Validator\Rule\Valid;
 use Omega\Validator\Rule\ValidPool;
 
 /**
- * @internal
- *
  * @property Collection $errors
  * @property Collection $filters
  */

@@ -10,7 +10,7 @@ namespace Omega\Validator\Traits;
 trait CustomValidationTrait
 {
     /**
-     * Cek the field is contain in input fileds.
+     * Check the field is contain in input fileds.
      * Custom rule to prevent runtime error when validation is empty.
      *
      * @param string                $field
